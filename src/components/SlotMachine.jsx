@@ -12,6 +12,8 @@ function RepeatButton(props) {
   );
 }
 
+
+
 export class SlotMachine extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ export class SlotMachine extends React.Component {
     }
     
     this.finishHandler = this.finishHandler.bind(this)
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this)
     
   }  
 
@@ -50,14 +52,28 @@ export class SlotMachine extends React.Component {
   }
 
   render() {
+    const address = ""
+    const amount = 1
     const { winner } = this.state;
     const repeatButton = <RepeatButton onClick={this.handleClick} />
+    const GetWinner = (winner) => {
+      if (winner === null) {
+        return 'Feeling lucky???'
+      } else {
+        if (winner) {
+          // render a functional component here to call the winner hook
+          return '🤑 Pure skill! 🤑'
+        } else {
+          return 'Tough luck...'
+        }
+      }
+    }
 
     return (
       <div >
         <div >
           <h1>
-            <span style={{ color: 'black'}}>{winner === null ? 'Waiting…' : winner ? '🤑 Pure skill! 🤑' : 'Tough luck...'}</span>
+            <span style={{ color: 'black'}}>{GetWinner(winner)}</span>
             {repeatButton}
           </h1>
         </div>
